@@ -1,0 +1,23 @@
+{
+	"peliculas":[{
+		"Genero": "Animadas",
+		"Nombre": "Bob Esponja ",
+		"Protagonista": "Bob"
+	},
+	{
+		"Genero": "Animadas",
+		"Nombre": "Minions",
+		"Protagonista": "Gru"
+	},
+	{
+		"Genero": "Historia",
+		"Nombre": "12 Años de esclavitud",
+		"Protagonista": "Stive M"
+	},
+	{
+		"Genero": "Historia",
+		"Nombre": "300",
+		"Protagonista": "Zac S"
+	}	
+	]
+}

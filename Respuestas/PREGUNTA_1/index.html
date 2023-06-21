@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pregunta 1</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<style type="text/css">
+		#background{position:absolute; width:99%; height:130%;}
+		#fixed {position:absolute; top: 0px; left: 0px;}
+	</style>
+<script>
+	var parser, xmlDoc;
+	var text = "<tienda><celular><marca>Samsung</marca><modelo>A30</modelo><estado>nuevo</estado><soperativo>Android</soperativo></celular><celular><marca>Samsung</marca><modelo>A50</modelo><estado>usado</estado><soperativo>Android</soperativo></celular><celular><marca>Samsung</marca><modelo>A70</modelo><estado>nuevo</estado><soperativo>Android</soperativo></celular><celular><marca>Xiaomi</marca><modelo>Note 10</modelo><estado>nuevo</estado><soperativo>Android</soperativo></celular><celular><marca>iPhone</marca><modelo>11</modelo><estado>nuevo</estado><soperativo>iOS</soperativo></celular><celular><marca>Samsung</marca><modelo>S10</modelo><estado>nuevo</estado><soperativo>Android</soperativo></celular><celular><marca>iPhone</marca><modelo>12</modelo><estado>Usado</estado><soperativo>iOS</soperativo></celular></tienda>";
+
+	parser = new DOMParser();
+	xmlDoc = parser.parseFromString(text, "text/xml");
+
+	function mostrarCelularesAndroid() {
+		var resultado = '';
+		var celulares = xmlDoc.getElementsByTagName("celular");
+		for (var i = 0; i < celulares.length; i++) {
+			var soperativo = celulares[i].getElementsByTagName("soperativo")[0].childNodes[0].nodeValue;
+			if (soperativo === "Android") {
+				var marca = celulares[i].getElementsByTagName("marca")[0].childNodes[0].nodeValue;
+				var modelo = celulares[i].getElementsByTagName("modelo")[0].childNodes[0].nodeValue;
+				resultado += marca + " " + modelo + "<br>";
+			}
+		}
+		document.getElementById("p1").innerHTML = resultado;
+	}
+
+	function mostrarCelularesiOS() {
+		var resultado = '';
+		var celulares = xmlDoc.getElementsByTagName("celular");
+		for (var i = 0; i < celulares.length; i++) {
+			var soperativo = celulares[i].getElementsByTagName("soperativo")[0].childNodes[0].nodeValue;
+			if (soperativo === "iOS") {
+				var marca = celulares[i].getElementsByTagName("marca")[0].childNodes[0].nodeValue;
+				var modelo = celulares[i].getElementsByTagName("modelo")[0].childNodes[0].nodeValue;
+				resultado += marca + " " + modelo + "<br>";
+			}
+		}
+		document.getElementById("p1").innerHTML = resultado;
+	}
+</script>
+
+</head>
+<body>
+	<div>
+		<img id="background" src="../../Imagenes/fondo.jpg"/> 
+	</div>
+	<div id="fixed" style="padding-left:30%; padding-top: 10%;">
+		<br>	
+		<img src="../../Imagenes/selloespe.jpg" width="65%" align="center">
+		<h1 style="padding-left:25%;">Pregunta 1</h1>
+		<p id="pregunta"> Analizar una cadena de texto en un objeto DOM XML y extraer esa Información con JavaScript</p>
+		<p id="descripcion"> Para este ejercicio se utilizara una cadena de texto sobre marcas de celulares dentro de una tienda.</p>
+		<p id="p3">Tienda de Celulares</p>
+		<p style="padding-left:15%;">
+			<button onclick="mostrarCelularesAndroid();">Mostrar celulares Android</button>
+			<button onclick="mostrarCelularesiOS();">Mostrar Celulares OS</button>
+		</p>
+		<p style="padding-left:35%;"id="p1"></p>
+		<br>
+		<button onclick="window.location.href='../../index.html'">Menu principal</button>
+	</div>
+</body>
+</html>

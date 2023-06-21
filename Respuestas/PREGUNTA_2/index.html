@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pregunta 2</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style type="text/css">
+      #background{position:absolute; width:99%; height:130%;}
+      #fixed {position:absolute; top: 0px; left: 0px;}
+    </style>
+  </head>
+  <body>
+    <div>
+      <img id="background" src="../../Imagenes/fondo.jpg"/> 
+    </div>
+    <div id="fixed" style="padding-left:30%; padding-top: 10%;">	
+      <br>	
+      <img src="../../Imagenes/selloespe.jpg" width="65%" align="center">
+      <h1 style="padding-left:25%;">Pregunta 2</h1>
+      <p>2) Desarrollar la función CargarDatos(), para desplegar el contenido (Asincrónico) de un archivo XML:</p>
+      <ul style="list-style-type: none;">
+        <li>xhttp = new XMLHttpRequest();<br>
+		  xhttp.onreadystatechange = function() {<br>
+		     if (this.readyState == 4 && this.status == 200) {<br>
+                 document.getElementById("demo").innerHTML = this.responseText; <br>
+			  }<br>
+		   };<br>
+		  xhttp.open("GET", "Texto.txt", true);<br>
+          xhttp.send();<br>
+        </li>
+      </ul>
+      <div class="section" id="enunciado" style="padding-left:25%;margin-top: 5%;" >
+      <button style="align-self: center;" type="button" onclick="CargarDatos()">Obtener Datos</button>
+      </div>
+      <div class="section" id="resolucion" style="margin-top: 5%;">
+      </div>
+      <div class="section" style="margin-top: 5%;">
+      </div>
+      <br>
+      <button onclick="window.location.href='../../index.html'">Menu principal</button>
+    </div>
+
+<script>
+var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+  
+    xhttp.open("GET", "animales.xml", true);
+    xhttp.send();
+
+    function CargarDatos() {
+      var xmlDoc = xhttp.responseXML;
+      var mamiferos = xmlDoc.getElementsByTagName("mamiferos");
+      var reptiles = xmlDoc.getElementsByTagName("reptiles");
+      var aves = xmlDoc.getElementsByTagName("aves");
+      var insectos = xmlDoc.getElementsByTagName("insectos");
+
+      document.getElementById("resolucion").innerHTML = "";
+
+      var mamiferosText = obtenerTextoAnimales(mamiferos);
+      var reptilesText = obtenerTextoAnimales(reptiles);
+      var avesText = obtenerTextoAnimales(aves);
+      var insectosText = obtenerTextoAnimales(insectos);
+
+      document.getElementById("resolucion").innerHTML += "Los animales (" + mamiferosText + ") comen (" + obtenerComida(mamiferos) + ").<br>";
+      document.getElementById("resolucion").innerHTML += "Los animales (" + reptilesText + ") comen (" + obtenerComida(reptiles) + ").<br>";
+      document.getElementById("resolucion").innerHTML += "Los animales (" + avesText + ") comen (" + obtenerComida(aves) + ").<br>";
+      document.getElementById("resolucion").innerHTML += "Los animales (" + insectosText + ") comen (" + obtenerComida(insectos) + ").<br>";
+    }
+
+    function obtenerTextoAnimales(elementos) {
+      var texto = "";
+      for (var i = 0; i < elementos.length; i++) {
+        var nombre = elementos[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue;
+        if (i > 0) {
+          texto += ", ";
+        }
+        texto += nombre;
+      }
+      return texto;
+    }
+
+    function obtenerComida(elementos) {
+      var texto = "";
+      for (var i = 0; i < elementos.length; i++) {
+        var comida = elementos[i].getElementsByTagName("comida")[0].childNodes[0].nodeValue;
+        if (i > 0) {
+          texto += ", ";
+        }
+        texto += comida;
+      }
+      return texto;
+    }
+  </script>
+</script>
+
+</body>
+</html>

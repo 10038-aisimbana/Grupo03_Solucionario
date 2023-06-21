@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pregunta 3</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <style type="text/css">
+    #background{position:absolute; width:99%; height:130%;}
+    #fixed {position:absolute; top: 0px; left: 0px;}
+  </style>
+</head>
+<body>
+<div>
+    <img id="background" src="../../Imagenes/fondo.jpg"/> 
+    
+  </div>
+<div id="fixed" style="padding-left:30%; padding-top: 10%;">
+<br>
+    <img src="../../Imagenes/selloespe.jpg"  width="65%" align="center">
+    
+<p>Escoja su género de películas preferido para desplegar una tabla con la información correspondient</p>
+<select id="myselect" name="Genero" onchange="change_myselect(this.value)">
+  <option value="">Elija una de las siguientes opciones</option>
+  <option value="Animadas">Animadas</option>
+  <option value="Animadas">Historia</option>
+
+</select>
+<p id="demo"></p>
+
+<br>
+<button onclick="window.location.href='../../index.html'">Menu principal</button>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
